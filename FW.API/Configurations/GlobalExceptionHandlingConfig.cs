@@ -1,17 +1,15 @@
 ﻿using FW.API.Middleware;
-using FW.Infrastructure;
-using Microsoft.EntityFrameworkCore;
 
 namespace FW.API.Configurations;
 
-public static class ExceptionHandlingConfig
+public static class GlobalExceptionHandlingConfig
 {
     public static void AddGlobalExceptionHandlingConfiguration(this IServiceCollection services)
     {
-        services.AddGlobalExceptionHandlingConfiguration();
+        services.AddTransient<GlobalExceptionHandlingMiddleware>();
     }
 
-    public static void ExceptionHandlingConfiguration(this IApplicationBuilder app)
+    public static void UseGlobalExceptionHandling(this IApplicationBuilder app)
     {
         app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
     }

@@ -3,20 +3,24 @@ using FW.Domain.ValueObject.StrongTypeId;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FW.Infrastructure.Configurations;
-
-public class LineItemConfiguration : IEntityTypeConfiguration<LineItem>
+namespace FW.Infrastructure.Configurations
 {
-    public void Configure(EntityTypeBuilder<LineItem> builder)
+    public class LineItemConfiguration : IEntityTypeConfiguration<LineItem>
     {
-        builder.HasKey(li => li.Id);
+        public void Configure(EntityTypeBuilder<LineItem> builder)
+        {
+            builder.HasKey(li => li.Id);
 
-        builder.Property(li => li.Id).HasConversion(
-            lineItemId => lineItemId.Value,
-            value => new LineItemId(value));
+            builder.Property(li => li.Id).HasConversion(
+                lineItemId => lineItemId.Value,
+                value => new LineItemId(value));
 
-        builder.HasOne<Product>()
-            .WithMany()
-            .HasForeignKey(li => li.ProductId);
+            builder.Property(li => li.Price)
+                   .HasColumnType("decimal(18, 2)");
+
+            builder.HasOne<Product>()
+                   .WithMany()
+                   .HasForeignKey(li => li.ProductId);
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using FW.API.Configurations;
-using FW.API.Middleware;
 
 namespace FW.API
 {
@@ -16,11 +15,11 @@ namespace FW.API
         {
             services.AddControllers();
 
+            services.AddDatabaseConfiguration(Configuration);
+
             services.AddGlobalExceptionHandlingConfiguration();
 
-            services.AddTransient<GlobalExceptionHandlingMiddleware>();
-
-            services.AddDatabaseConfiguration(Configuration);
+            services.AddSwaggerConfiguration();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -28,8 +27,7 @@ namespace FW.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RPA.API v1"));
+                app.UseSwaggerConfiguration();
             }
 
             app.UseHttpsRedirection();
@@ -40,6 +38,8 @@ namespace FW.API
             app.UseAuthorization();
 
             app.UseDatabaseConfiguration();
+
+            app.UseGlobalExceptionHandling();
 
             app.UseEndpoints(endpoints =>
             {

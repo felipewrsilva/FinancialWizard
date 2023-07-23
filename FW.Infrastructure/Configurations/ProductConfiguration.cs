@@ -20,6 +20,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             sku => sku.Value,
             value => Sku.Create(value)!);
 
-        builder.Property(p => p.Price);
+        builder.Property(p => p.Price)
+            .HasColumnType("decimal(18, 2)");
     }
 }
