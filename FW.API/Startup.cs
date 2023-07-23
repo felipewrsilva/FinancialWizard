@@ -21,6 +21,8 @@ namespace FW.API
 
             services.AddGlobalExceptionHandlingConfiguration();
 
+            services.AddAutoMapperConfiguration();
+
             services.AddSwaggerConfiguration();
         }
 

@@ -1,4 +1,7 @@
-﻿using FW.Application.Interfaces;
+﻿using AutoMapper;
+using FW.API.ViewModels.RequestModels;
+using FW.API.ViewModels.ResponseModels;
+using FW.Application.Interfaces;
 using FW.Domain.Entities;
 using FW.Domain.StrongTyped;
 using Microsoft.AspNetCore.Mvc;
@@ -10,22 +13,28 @@ namespace FW.API.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _customerService;
+        private readonly IMapper _mapper;
 
-        public CustomerController(ICustomerService customerService)
+        public CustomerController(ICustomerService customerService, IMapper mapper)
         {
             _customerService = customerService;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Customer customer)
+        public async Task<IActionResult> Create([FromBody] CustomerRequest customerRequest)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            Customer customer = _mapper.Map<Customer>(customerRequest);
+
             int customerId = await _customerService.AddAsync(customer);
 
+            CustomerResponse customerResponse = _mapper.Map<CustomerResponse>(customer);
+
             if (customerId > 0)
-                return CreatedAtAction(nameof(Get), new { id = customerId }, customer);
+                return CreatedAtAction(nameof(Get), new { id = customerResponse.Id }, customerResponse);
 
             return BadRequest("Failed to create customer.");
         }
@@ -33,13 +42,15 @@ namespace FW.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            var customerId = new CustomerId(id);
-            var customer = await _customerService.GetByIdAsync(customerId);
+            CustomerId customerId = new(id);
+            Customer? customer = await _customerService.GetByIdAsync(customerId);
 
             if (customer == null)
                 return NotFound();
 
-            return Ok(customer);
+            CustomerResponse customerResponse = _mapper.Map<CustomerResponse>(customer);
+
+            return Ok(customerResponse);
         }
     }
 }
