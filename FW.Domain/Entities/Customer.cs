@@ -1,8 +1,10 @@
-﻿namespace FW.Domain.Entities;
+﻿using FW.Domain.StrongTyped;
+
+namespace FW.Domain.Entities;
 
 public class Customer
 {
-    public Guid Id { get; set; }
+    public CustomerId Id { get; set; } = null!;
     public string Name { get; set; } = null!;
     public string Email { get; set; } = string.Empty;
 }

@@ -1,5 +1,6 @@
 ﻿using FW.Application.Interfaces;
 using FW.Domain.Entities;
+using FW.Domain.StrongTyped;
 using FW.Infrastructure.Interfaces;
 
 namespace FW.Application.Services;
@@ -18,7 +19,7 @@ public class CustomerService : ICustomerService
         return await _customerRepository.AddAsync(customer);
     }
 
-    public async Task<int> DeleteAsync(Guid id)
+    public async Task<int> DeleteAsync(CustomerId id)
     {
         const int CustomerNotDeleted = 0;
 
@@ -40,7 +41,7 @@ public class CustomerService : ICustomerService
         return await _customerRepository.GetAllAsync();
     }
 
-    public Task<Customer?> GetByIdAsync(Guid id)
+    public Task<Customer?> GetByIdAsync(CustomerId id)
     {
         return _customerRepository.GetByIdAsync(id);
     }

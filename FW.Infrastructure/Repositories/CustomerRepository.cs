@@ -1,4 +1,5 @@
 ﻿using FW.Domain.Entities;
+using FW.Domain.StrongTyped;
 using FW.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,7 +31,7 @@ public class CustomerRepository : ICustomerRepository
         return await _context.Customers.ToListAsync();
     }
 
-    public async Task<Customer?> GetByIdAsync(Guid id)
+    public async Task<Customer?> GetByIdAsync(CustomerId id)
     {
         return await _context.Customers
             .FirstOrDefaultAsync(c => c.Id == id);

@@ -1,4 +1,5 @@
-﻿using FW.Domain.ValueObject;
+﻿using FW.Domain.StrongTyped;
+using FW.Domain.ValueObject;
 
 namespace FW.Domain.Entities;
 
@@ -10,7 +11,7 @@ public class Order
 
     public Guid Id { get; private set; }
 
-    public Guid CustomerId { get; private set; }
+    public CustomerId CustomerId { get; private set; } = null!;
 
     public IReadOnlyCollection<LineItem> LineItems => _lineItems.ToList();
 

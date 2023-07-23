@@ -1,4 +1,5 @@
 ﻿using FW.Domain.Entities;
+using FW.Domain.StrongTyped;
 using Microsoft.EntityFrameworkCore;
 
 namespace FW.Infrastructure;
@@ -17,6 +18,9 @@ public class FWDbContext : DbContext
         modelBuilder.Entity<Customer>(entity =>
         {
             entity.HasKey(c => c.Id);
+            entity.Property(c => c.Id).HasConversion(
+                customerId => customerId.Value,
+                value => new CustomerId(value));
             entity.Property(c => c.Name).HasMaxLength(255);
             entity.Property(c => c.Email).HasMaxLength(255);
             entity.HasIndex(c => c.Email).IsUnique();

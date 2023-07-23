@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FW.Infrastructure.Migrations
 {
     [DbContext(typeof(FWDbContext))]
-    [Migration("20230723193105_InitialCreate")]
+    [Migration("20230723194118_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -28,7 +28,6 @@ namespace FW.Infrastructure.Migrations
             modelBuilder.Entity("FW.Domain.Entities.Customer", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
