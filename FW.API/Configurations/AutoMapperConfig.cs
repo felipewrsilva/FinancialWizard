@@ -1,4 +1,4 @@
-﻿using FW.API.Profiles;
+﻿using FW.API.Profiles.Entities;
 using FW.Domain.StrongTyped;
 
 namespace FW.API.Configurations;

@@ -1,6 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.11.0" />
+    <PackageReference Include="FluentValidation" Version="11.6.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
+    <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit.Runners" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FW.API\FW.API.csproj" />
     <ProjectReference Include="..\FW.Application\FW.Application.csproj" />
     <ProjectReference Include="..\FW.Domain\FW.Domain.csproj" />
