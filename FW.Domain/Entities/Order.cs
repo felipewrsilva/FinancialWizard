@@ -1,5 +1,4 @@
 ﻿using FW.Domain.ValueObject;
-using FW.Domain.ValueObject.StrongTypeId;
 
 namespace FW.Domain.Entities;
 
@@ -9,9 +8,9 @@ public class Order
 
     private Order() { }
 
-    public OrderId Id { get; private set; } = null!;
+    public Guid Id { get; private set; }
 
-    public CustomerId CustomerId { get; private set; } = null!;
+    public Guid CustomerId { get; private set; }
 
     public IReadOnlyCollection<LineItem> LineItems => _lineItems.ToList();
 
@@ -19,17 +18,17 @@ public class Order
     {
         var order = new Order
         {
-            Id = new OrderId(Guid.NewGuid()),
+            Id = Guid.NewGuid(),
             CustomerId = customer.Id
         };
 
         return order;
     }
 
-    public void Add(ProductId productId, decimal productPrice)
+    public void Add(Guid productId, decimal productPrice)
     {
         var lineItem = new LineItem(
-            id: new LineItemId(Guid.NewGuid()),
+            id: Guid.NewGuid(),
             orderId: Id,
             productId,
             productPrice);

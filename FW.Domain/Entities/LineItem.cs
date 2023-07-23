@@ -1,11 +1,8 @@
-﻿using FW.Domain.ValueObject;
-using FW.Domain.ValueObject.StrongTypeId;
-
-namespace FW.Domain.Entities;
+﻿namespace FW.Domain.Entities;
 
 public class LineItem
 {
-    internal LineItem(LineItemId id, OrderId orderId, ProductId productId, decimal price)
+    internal LineItem(Guid id, Guid orderId, Guid productId, decimal price)
     {
         Id = id;
         OrderId = orderId;
@@ -13,8 +10,8 @@ public class LineItem
         Price = price;
     }
 
-    public LineItemId Id { get; private set; }
-    public OrderId OrderId { get; private set; }
-    public ProductId ProductId { get; private set; }
+    public Guid Id { get; private set; }
+    public Guid OrderId { get; private set; }
+    public Guid ProductId { get; private set; }
     public decimal Price { get; private set; }
 }
