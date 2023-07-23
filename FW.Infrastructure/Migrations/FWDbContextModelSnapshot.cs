@@ -25,6 +25,7 @@ namespace FW.Infrastructure.Migrations
             modelBuilder.Entity("FW.Domain.Entities.Customer", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
