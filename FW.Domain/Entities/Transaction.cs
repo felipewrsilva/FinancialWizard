@@ -8,5 +8,5 @@ public class Transaction
     public TransactionId Id { get; private set; } = null!;
     public string Name { get; private set; } = string.Empty;
     public string Description { get; private set; } = string.Empty;
-    public Money Price { get; private set; } = null!;
+    public decimal Price { get; private set; }
 }

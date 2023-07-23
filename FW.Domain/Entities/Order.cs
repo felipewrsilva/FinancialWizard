@@ -6,8 +6,14 @@ namespace FW.Domain.Entities;
 public class Order
 {
     private readonly HashSet<LineItem> _lineItems = new();
+
+    private Order() { }
+
     public OrderId Id { get; private set; } = null!;
+
     public CustomerId CustomerId { get; private set; } = null!;
+
+    public IReadOnlyCollection<LineItem> LineItems => _lineItems.ToList();
 
     public static Order Create(Customer customer)
     {
@@ -20,7 +26,7 @@ public class Order
         return order;
     }
 
-    public void Add(ProductId productId, Money productPrice)
+    public void Add(ProductId productId, decimal productPrice)
     {
         var lineItem = new LineItem(
             id: new LineItemId(Guid.NewGuid()),
@@ -30,20 +36,4 @@ public class Order
 
         _lineItems.Add(lineItem);
     }
-}
-
-public class LineItem
-{
-    internal LineItem(LineItemId id, OrderId orderId, ProductId productId, Money price)
-    {
-        Id = id;
-        OrderId = orderId;
-        ProductId = productId;
-        Price = price;
-    }
-
-    public LineItemId Id { get; private set; }
-    public OrderId OrderId { get; private set; }
-    public ProductId ProductId { get; private set; }
-    public Money Price { get; private set; }
 }
