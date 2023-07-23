@@ -1,4 +1,5 @@
 ﻿using FW.API.Profiles.Entities;
+using FW.API.Profiles.ValueObjects;
 using FW.Domain.StrongTyped;
 
 namespace FW.API.Configurations;
@@ -9,6 +10,8 @@ public static class AutoMapperConfig
     {
         services.AddAutoMapper(
             typeof(CustomerProfile),
-            typeof(CustomerId));
+            typeof(CustomerId),
+            typeof(EmailProfile),
+            typeof(PhoneProfile));
     }
 }

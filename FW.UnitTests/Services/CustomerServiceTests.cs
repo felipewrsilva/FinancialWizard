@@ -7,6 +7,7 @@ using FW.Application.Services;
 using FW.Domain.Entities;
 using FW.Domain.StrongTyped;
 using FW.Infrastructure.Interfaces;
+using FW.Domain.ValueObject;
 
 namespace FW.UnitTests.Services;
 
