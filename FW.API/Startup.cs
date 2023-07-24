@@ -15,9 +15,13 @@ namespace FW.API
         {
             services.AddControllers();
 
+            services.AddDependencyInjectionConfiguration();
+
             services.AddDatabaseConfiguration(Configuration);
 
             services.AddGlobalExceptionHandlingConfiguration();
+
+            services.AddAutoMapperConfiguration();
 
             services.AddSwaggerConfiguration();
         }

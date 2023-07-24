@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FW.Domain\FW.Domain.csproj" />
     <ProjectReference Include="..\FW.Infrastructure\FW.Infrastructure.csproj" />
   </ItemGroup>

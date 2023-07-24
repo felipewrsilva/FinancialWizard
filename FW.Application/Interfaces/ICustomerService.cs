@@ -1,14 +1,14 @@
 ﻿using FW.Domain.Entities;
 using FW.Domain.StrongTyped;
 
-namespace FW.Infrastructure.Interfaces;
+namespace FW.Application.Interfaces;
 
-public interface ICustomerRepository
+public interface ICustomerService
 {
     Task<int> AddAsync(Customer customer);
+    Task<int> DeleteAsync(CustomerId id);
     Task<int> DeleteAsync(Customer customer);
     Task<List<Customer>> GetAllAsync();
     Task<Customer?> GetByIdAsync(CustomerId id);
-    Task<List<Customer>> GetByNameAsync(string name);
     Task<int> UpdateAsync(Customer customer);
 }
