@@ -9,6 +9,5 @@ public interface ICustomerRepository
     Task<int> DeleteAsync(Customer customer);
     Task<List<Customer>> GetAllAsync();
     Task<Customer?> GetByIdAsync(CustomerId id);
-    Task<List<Customer>> GetByNameAsync(string name);
     Task<int> UpdateAsync(Customer customer);
 }

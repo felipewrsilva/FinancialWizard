@@ -36,11 +36,6 @@ public class CustomerService : ICustomerService
         return await _customerRepository.DeleteAsync(customer);
     }
 
-    public async Task<List<Customer>> GetAllAsync()
-    {
-        return await _customerRepository.GetAllAsync();
-    }
-
     public Task<Customer?> GetByIdAsync(CustomerId id)
     {
         return _customerRepository.GetByIdAsync(id);

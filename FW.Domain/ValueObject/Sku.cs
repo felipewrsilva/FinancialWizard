@@ -13,9 +13,7 @@ public record Sku
         string? trimedValue = value?.Trim();
 
         if (trimedValue?.Length != DefaultLength)
-        {
             return null;
-        }
 
         return new Sku(trimedValue);
     }
