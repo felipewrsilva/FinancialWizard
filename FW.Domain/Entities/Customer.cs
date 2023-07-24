@@ -21,7 +21,7 @@ public class Customer
         
     public static Customer Create(string name, Email email, Phone phone) => new(new CustomerId(Guid.NewGuid()), name, email, phone);
 
-    public static Customer Create(Guid id, string name, Email email, Phone phone) => new(new CustomerId(id), name, email, phone);
+    public static Customer Create(CustomerId id, string name, Email email, Phone phone) => new(id, name, email, phone);
 
     public CustomerId Id { get; private set; }
     public string Name { get; private set; } = null!;
