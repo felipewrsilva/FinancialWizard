@@ -65,7 +65,7 @@ namespace FW.API.Controllers
             return Ok();
         }
 
-        [HttpPut()]
+        [HttpPut]
         public async Task<IActionResult> Update(CustomerUpdateRequest customerRequest)
         {
             Customer customer = _mapper.Map<Customer>(customerRequest);
