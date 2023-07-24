@@ -22,7 +22,7 @@ namespace FW.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CustomerRequest customerRequest)
+        public async Task<IActionResult> Create([FromBody] CustomerCreateRequest customerRequest)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -46,6 +46,32 @@ namespace FW.API.Controllers
             Customer? customer = await _customerService.GetByIdAsync(customerId);
 
             if (customer == null)
+                return NotFound();
+
+            CustomerResponse customerResponse = _mapper.Map<CustomerResponse>(customer);
+
+            return Ok(customerResponse);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            CustomerId customerId = new(id);
+            var registriesAltered = await _customerService.DeleteAsync(customerId);
+
+            if (registriesAltered == 0)
+                return NotFound();
+
+            return Ok();
+        }
+
+        [HttpPut()]
+        public async Task<IActionResult> Update(CustomerUpdateRequest customerRequest)
+        {
+            Customer customer = _mapper.Map<Customer>(customerRequest);
+            var registriesAltered = await _customerService.UpdateAsync(customer);
+
+            if (registriesAltered == 0)
                 return NotFound();
 
             CustomerResponse customerResponse = _mapper.Map<CustomerResponse>(customer);

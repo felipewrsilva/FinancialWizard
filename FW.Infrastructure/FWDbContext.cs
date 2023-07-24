@@ -22,9 +22,10 @@ public class FWDbContext : DbContext
             entity.HasKey(c => c.Id);
             entity.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
-            entity.Property(c => c.Id).HasConversion(
-                customerId => customerId.Value,
-                value => new CustomerId(value));
+            entity.Property(c => c.Id)
+                .HasConversion(
+                    customerId => customerId.Value,
+                    value => new CustomerId(value));
 
             entity.Property(c => c.Phone).HasConversion(
                 phone => phone.Value,
@@ -34,9 +35,12 @@ public class FWDbContext : DbContext
                 email => email.Value,
                 value => new Email(value));
 
-            entity.Property(c => c.Name).HasMaxLength(255);
-            entity.Property(c => c.Email).HasMaxLength(255);
-            entity.HasIndex(c => c.Email).IsUnique();
+            entity.Property(c => c.Name)
+                .HasMaxLength(255);
+            entity.Property(c => c.Email)
+                .HasMaxLength(255);
+            entity.HasIndex(c => c.Email)
+                  .IsUnique();
 
             entity.HasMany(c => c.Addresses)
                 .WithOne(a => a.Customer)
