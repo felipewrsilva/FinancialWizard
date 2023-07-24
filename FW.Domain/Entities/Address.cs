@@ -26,7 +26,7 @@ public class Address
         Country = country;
     }
 
-    public AddressId Id { get; private set; }
+    public AddressId Id { get; private set; } = null!;
     public string Street { get; private set; }
     public string Number { get; private set; }
     public string? Complement { get; private set; }
@@ -35,7 +35,7 @@ public class Address
     public string State { get; private set; }
     public string PostalCode { get; private set; }
     public string Country { get; private set; }
-    public Customer Customer { get; private set; }
+    public Customer Customer { get; private set; } = null!;
     public CustomerId CustomerId { get; private set; }
 
     public static Address Create(

@@ -28,11 +28,11 @@ public class FWDbContext : DbContext
                     value => new CustomerId(value));
 
             entity.Property(c => c.Phone).HasConversion(
-                phone => phone.Value,
+                phone => phone!.Value,
                 value => new Phone(value));
 
             entity.Property(c => c.Email).HasConversion(
-                email => email.Value,
+                email => email!.Value,
                 value => new Email(value));
 
             entity.Property(c => c.Name)
