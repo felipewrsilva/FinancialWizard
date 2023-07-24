@@ -21,7 +21,7 @@ namespace FW.API.Configurations
         {
             OpenApiInfo openApiInfo = new()
             {
-                Title = "Management User",
+                Title = "Financial Wizard",
                 Version = "v1",
                 Contact = new OpenApiContact
                 {
@@ -37,7 +37,7 @@ namespace FW.API.Configurations
         public static void UseSwaggerConfiguration(this IApplicationBuilder app)
         {
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RPA.API v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FW.API v1"));
         }
     }
 }
